@@ -745,6 +745,11 @@ void initializeDD() {
   holeTileRowIdx = -1;
   randomizeTilesStepCount = 0;
   waitingToRestartMillis = 0;
+
+  if (false) {
+    ensureBoardInitialized();
+    showHideHoleTile(false);
+  }
 }
 
 void updateDD(bool isFirstUpdate) {
