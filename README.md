@@ -1,7 +1,7 @@
 ---
 title: 'Sliding Puzzle Next Move Suggesting Naive DL Model with ESP32 TensorFlow Lite'
 description: 'This experiment takes the game Sliding Puzzle adding to it the capability of suggesting next move with a naive DL model realized with ESP32 TensorFow Lite support'
-tags: 'SlidingPuzzle, ESP32, ESP32S3, TensorFlowLite, DeepLearning, AI'
+tags: 'slidingpuzzle, esp32, esp32s3, tensorflowlite, deeplearning, ai'
 cover_image: /images/sliding_ss_00.jpg
 published: false
 ---
