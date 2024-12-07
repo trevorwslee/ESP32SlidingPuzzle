@@ -1,0 +1,7 @@
+.idea
+.vscode
+.pio
+.venv
+ESP32SlidingPuzzle.iml
+src/_secret.h
+src/esp32_sliding_puzzle/sp_model_4_good.h
