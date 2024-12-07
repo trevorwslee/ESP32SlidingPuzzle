@@ -1,13 +1,13 @@
 ---
 title: Sliding Puzzle Next Move Suggesting Naive DL Model with ESP32 TensorFlow Lite
 description: Take the DumbDisplay example game Sliding Puzzle adding to it AI option for next move
+cover_image: /images/sliding_ss_00.jpg
 published: false
 id: 2143402
 ---
 
 
 tags: 'slidingpuzzle, esp32, esp32s3, tensorflowlite, deeplearning, ai'
-cover_image: /images/sliding_ss_00.jpg
 
 
 # Sliding Puzzle 'Next Move' Suggesting Naive DL Model with ESP32 TensorFlow Lite
