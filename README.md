@@ -1,7 +1,8 @@
 ---
-title: 'Sliding Puzzle Next Move Suggesting Naive DL Model with ESP32 TensorFlow Lite'
-description: 'Take the DumbDisplay example game Sliding Puzzle adding to it AI option for next move'
+title: Sliding Puzzle Next Move Suggesting Naive DL Model with ESP32 TensorFlow Lite
+description: Take the DumbDisplay example game Sliding Puzzle adding to it AI option for next move
 published: false
+id: 2143402
 ---
 
 
