@@ -1,5 +1,5 @@
 ---
-title: Sliding Puzzle Next Move Suggesting Naive DL Model with ESP32 TensorFlow Lite
+title: Sliding Puzzle Next Move Suggesting Simple DL Model with ESP32 TensorFlow Lite
 description: Take the DumbDisplay example game Sliding Puzzle adding to it AI option for next move
 cover_image: /images/sliding-poster.png
 tags: 'slidingpuzzle, esp32, tensorflowlite'
@@ -8,7 +8,7 @@ id: 2143402
 ---
 
 
-# Sliding Puzzle 'Next Move' Suggesting Naive DL Model with ESP32 TensorFlow Lite
+# Sliding Puzzle 'Next Move' Suggesting Simple DL Model with ESP32 TensorFlow Lite
 
 This [project](https://github.com/trevorwslee/ESP32SlidingPuzzle) takes the game [Sliding Puzzle](https://github.com/trevorwslee/Arduino-DumbDisplay/blob/master/examples/sliding_puzzle_w_suggest/sliding_puzzle_w_suggest.ino)
 (with simple 'next move' suggesting 'search-directed heuristic' option),
@@ -17,6 +17,9 @@ The Sliding Puzzle game is implemented for Arduino framework compatible microcon
 to render the game remotely on your Android mobile phone.
 Specifically, ESP32 / ESP32-S3 is the targe microcontroller for this experiment, since it not only supports Arduino framework, it also supports TensorFlow Lite.
 
+
+![](images/sliding_ss_01.jpg)
+![](images/sliding.gif)
 
 |  |  |  |
 |--|--|--|
