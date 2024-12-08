@@ -3,7 +3,7 @@ title: Sliding Puzzle Next Move Suggesting Simple DL Model with ESP32 TensorFlow
 description: Take the DumbDisplay example game Sliding Puzzle adding to it AI option for next move
 cover_image: /images/sliding-poster.png
 tags: 'slidingpuzzle, esp32, tensorflowlite'
-published: false
+published: true
 id: 2143402
 ---
 
@@ -12,14 +12,11 @@ id: 2143402
 
 This [project](https://github.com/trevorwslee/ESP32SlidingPuzzle) takes the game [Sliding Puzzle](https://github.com/trevorwslee/Arduino-DumbDisplay/blob/master/examples/sliding_puzzle_w_suggest/sliding_puzzle_w_suggest.ino)
 (with simple 'next move' suggesting 'search-directed heuristic' option),
-adding to it the capability of suggesting 'next move' with a ***naive*** DL model realized with ESP32 TensorFow Lite support.
+adding to it the capability of suggesting 'next move' with a ***simple and naive*** DL model realized with ESP32 TensorFow Lite support.
 The Sliding Puzzle game is implemented for Arduino framework compatible microcontrollers with aids from [DumbDisplay](https://github.com/trevorwslee/Arduino-DumbDisplay)
 to render the game remotely on your Android mobile phone.
 Specifically, ESP32 / ESP32-S3 is the targe microcontroller for this experiment, since it not only supports Arduino framework, it also supports TensorFlow Lite.
 
-
-![](images/sliding_ss_01.jpg)
-![](images/sliding.gif)
 
 |  |  |  |
 |--|--|--|
@@ -98,7 +95,7 @@ With accuracy 0.868, the DL model appears not very good, but should be acceptabl
 
 # Building and Uploading the Sketch
 
-As mentioned previously, although not necessary, the steps to build and update the sketch is via the PlatformIO extension.
+As mentioned previously, although not necessary, the steps to build and update the sketch is via PlatformIO (an extension of VSCode).
 
 The configurations for developing and building of the sketch are basically written down in the `platformio.ini` file
 ```
@@ -165,7 +162,7 @@ For ESP32S3 which is using Wifi connectivity, the log entries will be like
 
 ![](.README_images/ebaed7cb.png)
 
-Notice that the IP to connect to the ESP32 board is listed
+Notice that the IP to connect to the ESP32 board shown by the log entries.
 
 To connect your Android phone to your ESP32 / ESP32S3 microcontroller board via DumbDisplay Android app, open the DumbDisplay Android app and make connection like
 
@@ -206,7 +203,6 @@ The 'next move' suggestion is certainly not very accurate, specially when the bo
 * The DL + "search" can be improved
 
 Moreover, the board size can be bigger, like 5x5.
-
 In order to change the board size to 5:
 
 1) Need to change `tile_count` of `train_model.ipynb` generate a `sp_model_5.h` for the sketch
@@ -230,7 +226,7 @@ In order to change the board size to 5:
    ```    
 
 
-*Wise that interested friends can try out and share how the 'next move' suggestion can be improved.*
+*Interested friends are encouraged to try out and share how the 'next move' suggestion can be improved.*
 
 
 # Enjoy!
