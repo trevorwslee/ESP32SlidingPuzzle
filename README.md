@@ -5,6 +5,7 @@ cover_image: /images/sliding-poster.png
 tags: 'slidingpuzzle, esp32, tensorflowlite'
 published: true
 id: 2143402
+date: '2024-12-08T14:17:00Z'
 ---
 
 
