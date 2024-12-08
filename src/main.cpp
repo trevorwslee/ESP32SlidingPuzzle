@@ -6,5 +6,4 @@
   #define BLUETOOTH "ESP32Sliding"
 #endif
 
-//#include "examples/sliding_puzzle_w_suggest/sliding_puzzle_w_suggest.ino"
 #include "esp32_sliding_puzzle/esp32_sliding_puzzle.ino"

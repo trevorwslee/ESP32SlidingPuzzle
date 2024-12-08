@@ -31,10 +31,6 @@
 
 #ifdef SUPPORT_AI
 
-  //const bool fallbackToSearch = false;
-  //const float acceptableAIProp = 0.3;
-  //const float sureAIProp = 0.7;
-
   #include <TensorFlowLite_ESP32.h>
   #include "tensorflow/lite/micro/all_ops_resolver.h"
   #include "tensorflow/lite/micro/micro_error_reporter.h"
