@@ -17,9 +17,7 @@ The Sliding Puzzle game is implemented for Arduino framework compatible microcon
 to render the game remotely on your Android mobile phone.
 Specifically, ESP32 / ESP32-S3 is the targe microcontroller for this experiment, since it not only supports Arduino framework, it also supports TensorFlow Lite.
 
-|  |  |  |
-|--|--|--|
-|![](/images/sliding_ss_01.jpg)|🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>|![](/images/sliding.gif)|
+![](/images/sliding.gif)
 
 The DL model of this experiment is implemented with TensorFlow that I worked out by referencing to two of my previous experiments:
 * [Trying Out TensorFlow Lite Hello World Model With ESP32 and DumbDisplay](https://www.instructables.com/Trying-Out-TensorFlow-Lite-Hello-World-Model-With-/)
