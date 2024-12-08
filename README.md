@@ -141,11 +141,41 @@ For ESP32S3 which is using Wifi connectivity, the log entries will be like
 
 Notice that the IP to connect to the ESP32 board is listed
 
-To connect your Android phone to your ESP32 / ESP32S3 microcontroller board, open the DumbDisplay Android app and make connection like
+To connect your Android phone to your ESP32 / ESP32S3 microcontroller board via DumbDisplay Android app, open the DumbDisplay Android app and make connection like
 
 | with Bluetooth  | add WiFi   | with Wifi |
 |--|--|--|
 |![](images/dd-connect-bt.jpg)|![](images/dd-connect-wifi-add.jpg)|![](images/dd-connect-wifi.jpg)|
+
+# Sliding Puzzle Game UI
+
+| | |
+|--|--|
+|After connection, you should see the picture of the board drawn.|![](images/sliding_ss_00.jpg)|
+|To start a game, double click on the board, to divide the board into grid of tiles|![](images/sliding_ss_02.jpg)|
+
+Double clicking on the board will randomize the board by 5 steps (5 random moves).
+
+During game play, you can click ***Suggest*** for a suggested 'next move'.
+If you can click ***Continuous*** suggested 'next moves' are continuously made until either you disabled ***Continuous*** or the game is completed. 
+
+There are three option for the 'next move' suggestion:
+1) ***AI Only*** -- use the trained DL model for predicting 'next move' (the highest probability one)
+2) ***AI+Search*** -- largely use the trained DL model for predicting 'next move'; however, if the top 'next move' probability is not high, fallback to use original "search* algo 
+3) ***Search Only*** -- use original "search" algo only
+
+After every successful completion of the game, 5 more randomize steps are added to randomization making the game a bit harder.
+
+# Improving the 'Next Move' Suggestion Accuracy
+
+The 'next move' suggestion is certainly not very accurate, specially when the board is randomized for many steps.
+
+* The ***naive*** DL model can certainly be improved
+* The "search" algo can be improved
+* The DL + "search" can be improved
+
+***Wise that interested someones can try out and share how the 'next move' suggestion can be improved.***
+
 
 # Enjoy!
 
