@@ -14,14 +14,11 @@ date: '2024-12-08T14:17:00Z'
 This [project](https://github.com/trevorwslee/ESP32SlidingPuzzle) takes the game [Sliding Puzzle](https://github.com/trevorwslee/Arduino-DumbDisplay/blob/master/examples/sliding_puzzle_w_suggest/sliding_puzzle_w_suggest.ino)
 (with simple 'next move' suggesting 'search-directed heuristic' option),
 adding to it the capability of suggesting 'next move' with a ***simple and naive*** DL model realized with ESP32 TensorFow Lite support.
-The Sliding Puzzle game is implemented for Arduino framework compatible microcontrollers with aids from [DumbDisplay](https://github.com/trevorwslee/Arduino-DumbDisplay)
+The Sliding Puzzle game is implemented for Arduino framework compatible microcontroller boards with aids from [DumbDisplay](https://github.com/trevorwslee/Arduino-DumbDisplay)
 to render the game remotely on your Android mobile phone.
-Specifically, ESP32 / ESP32-S3 is the targe microcontroller for this experiment, since it not only supports Arduino framework, it also supports TensorFlow Lite.
+Specifically, ESP32 / ESP32S3 is the targe microcontroller board for this experiment, since it not only supports Arduino framework, it also supports TensorFlow Lite.
 
-
-|  |  |  |
-|--|--|--|
-|![](images/sliding_ss_01.jpg)|🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>🤖<br>|![](images/sliding.gif)|
+![](images/sliding.gif)
 
 The DL model of this experiment is implemented with TensorFlow that I worked out by referencing to two of my previous experiments:
 * [Trying Out TensorFlow Lite Hello World Model With ESP32 and DumbDisplay](https://www.instructables.com/Trying-Out-TensorFlow-Lite-Hello-World-Model-With-/)
@@ -190,13 +187,15 @@ There are three options for the 'next move' suggestion:
 
 After every solving of the puzzle, 5 more randomize steps are added to randomization making the game a bit harder.
 
+Any time if you want to reset / restart the game, double click on the ***Reset*** button.
+
 # Improving the 'Next Move' Suggestion Accuracy
 
 The 'next move' suggestion is certainly not very accurate, specially when the board is randomized for many steps.
 
 * The ***naive*** DL model can certainly be improved.
   Notice that in`train_model.ipynb`, the training data is randomized in reverse of how a board is randomize.
-  Hence, it make sense that the number of randomize steps affects the accuracy of the model specially in case the game is randomized for more steps than the model is trained.
+  Hence, it makes sense that the number of randomize steps affects the accuracy of the model specially in case the game is randomized for more steps than the model is trained.
   Here are the parameters for training the model:
   - `round_count` -- the number of rounds of random boards to generate; `10000` by default
   - `random_step_count` -- the number of random moves from "solved orientation" to "randomized orientation"; `20` by default  
@@ -209,12 +208,12 @@ In order to change the board size to 5:
 1) Need to change `tile_count` of `train_model.ipynb` generate a `sp_model_5.h` for the sketch
    ```
    # tile_count is the number of horizontal / vertical tiles ... a tile_count of 4 means a 4x4 board
-   tile_count = 4
+   tile_count = 5
    ```
 
 2) Need to modify the sketch `esp32_sliding_puzzle.ino`
    ```
-   #define TILE_COUNT              4
+   #define TILE_COUNT 5
    ```
    which controls
    ```
