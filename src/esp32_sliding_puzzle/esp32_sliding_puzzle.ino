@@ -15,6 +15,9 @@
 #define TILE_COUNT              4
 #define SUPPORT_AI     
 
+// experimental
+//#define AI_STAGED_STAGE_COUNT   2
+
 #define SUGGEST_MAX_DEPTH       10
 #define SUGGEST_MIN_DEPTH       3
 
@@ -50,10 +53,24 @@
   };
 
 
-  #if TILE_COUNT == 4
-    #include "sp_model_4.h"
-  #elif TILE_COUNT == 5
-    #include "sp_model_5.h"
+  #if defined(AI_STAGED_STAGE_COUNT) && AI_STAGED_STAGE_COUNT == 3
+    #if TILE_COUNT == 4
+      #include "sp_staged_model_4_3.h"
+    #elif TILE_COUNT == 5
+      #include "sp_staged_model_5_3.h"
+    #endif
+  #elif defined(AI_STAGED_STAGE_COUNT) && AI_STAGED_STAGE_COUNT == 2
+    #if TILE_COUNT == 4
+      #include "sp_staged_model_4_2.h"
+    #elif TILE_COUNT == 5
+      #include "sp_staged_model_5_2.h"
+    #endif
+  #else
+    #if TILE_COUNT == 4
+      #include "sp_model_4.h"
+    #elif TILE_COUNT == 5
+      #include "sp_model_5.h"
+    #endif
   #endif
   const tflite::Model* model = ::tflite::GetModel(sp_model);
 
@@ -423,8 +440,18 @@ short suggestMoveDirWithAI() {
   short canMoves[4];
   int canCount = 0;
   float maxProb = 0;
-  for (int i = 0; i < 4; i++) {
-    float p = output->data.f[i];
+  int total_move_category_count = 4;
+  #ifdef AI_STAGED_STAGE_COUNT
+    total_move_category_count *= AI_STAGED_STAGE_COUNT;
+    int maxProbStage = 0;
+  #endif  
+  for (int i_cat = 0; i_cat < total_move_category_count; i_cat++) {
+    float p = output->data.f[i_cat];
+  #ifdef AI_STAGED_STAGE_COUNT
+    int i = i_cat % 4;
+  #else 
+    int i = i_cat;
+  #endif
     String desc;
     if (i == 0) {
       desc = "from left";
@@ -457,6 +484,9 @@ short suggestMoveDirWithAI() {
       if (suggestedMoveDir == -1 || p > maxProb) {
         suggestedMoveDir = i;
         maxProb = p;
+  #ifdef AI_STAGED_STAGE_COUNT
+        maxProbStage = i_cat / 4;
+  #endif
       }
     }
   }
@@ -471,7 +501,11 @@ short suggestMoveDirWithAI() {
     }
   }
   if (suggestedMoveDir != -1) {
+  #ifdef AI_STAGED_STAGE_COUNT
+    String logMsg = "AI suggestedMoveDir: " + String(suggestedMoveDir) + " with probability: " + String(maxProb, 3) + " {stage: " + String(maxProbStage) + "}";
+  #else
     String logMsg = "AI suggestedMoveDir: " + String(suggestedMoveDir) + " with probability: " + String(maxProb, 3);
+  #endif
     if (coopMode == 0) {
       logMsg = "'AI Only' " + logMsg;
     }
@@ -706,7 +740,11 @@ void initializeDD() {
   resetButton->border(1, "red", "round");
   resetButton->pixelColor("darkred");
   resetButton->backgroundColor("orange");
-  resetButton->writeCenteredLine("🔄 Reset 🔄");
+  #ifdef AI_STAGED_STAGE_COUNT
+    resetButton->writeCenteredLine("🔄 Reset (" + String(AI_STAGED_STAGE_COUNT) + ") 🔄");
+  #else
+    resetButton->writeCenteredLine("🔄 Reset 🔄");
+  #endif
   resetButton->enableFeedback();
 
   coopSelection = dumbdisplay.createSelectionLayer(11, 1, 3, 1);
