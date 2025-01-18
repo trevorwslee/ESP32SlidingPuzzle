@@ -20,7 +20,7 @@
 
 
 // experimental
-// #define AI_SUGGEST_LM_COUNT     2
+//#define AI_SUGGEST_LM_COUNT     1
 
 
 #define SUGGEST_MAX_DEPTH       10
@@ -76,11 +76,11 @@
     #elif TILE_COUNT == 5
       #include "sp_lm_model_5_1.h"
     #endif
-  #elif defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT == 15
+  #elif defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT == 2
     #if TILE_COUNT == 4
-      #include "sp_lm_model_4_15.h"
+      #include "sp_lm_model_4_2.h"
     #elif TILE_COUNT == 5
-      #include "sp_lm_model_5_15.h"
+      #include "sp_lm_model_5_2.h"
     #endif
   #else
     #if TILE_COUNT == 4
