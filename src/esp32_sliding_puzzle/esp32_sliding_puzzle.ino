@@ -20,7 +20,7 @@
 
 
 // experimental
-#define AI_SUGGEST_LM_COUNT    1
+// #define AI_SUGGEST_LM_COUNT     2
 
 
 #define SUGGEST_MAX_DEPTH       10
