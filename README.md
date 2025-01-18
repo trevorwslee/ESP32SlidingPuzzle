@@ -93,7 +93,7 @@ With accuracy 0.868, the DL model appears not very good, but should be acceptabl
 
 # Building and Uploading the Sketch
 
-As mentioned previously, although not necessary, the steps to build and update the sketch is via PlatformIO (an extension of VSCode).
+The steps to build and upload the sketch is via PlatformIO (an extension of VSCode).
 
 The configurations for developing and building of the sketch are basically written down in the `platformio.ini` file
 ```
