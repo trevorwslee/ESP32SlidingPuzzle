@@ -18,6 +18,11 @@
 // experimental
 //#define AI_STAGED_STAGE_COUNT   2
 
+
+// experimental
+#define AI_SUGGEST_LM_COUNT    1
+
+
 #define SUGGEST_MAX_DEPTH       10
 #define SUGGEST_MIN_DEPTH       3
 
@@ -64,6 +69,18 @@
       #include "sp_staged_model_4_2.h"
     #elif TILE_COUNT == 5
       #include "sp_staged_model_5_2.h"
+    #endif
+  #elif defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT == 1
+    #if TILE_COUNT == 4
+      #include "sp_lm_model_4_1.h"
+    #elif TILE_COUNT == 5
+      #include "sp_lm_model_5_1.h"
+    #endif
+  #elif defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT == 15
+    #if TILE_COUNT == 4
+      #include "sp_lm_model_4_15.h"
+    #elif TILE_COUNT == 5
+      #include "sp_lm_model_5_15.h"
     #endif
   #else
     #if TILE_COUNT == 4
@@ -418,6 +435,10 @@ bool suggestMove() {
 #endif
 
 #ifdef SUPPORT_AI
+  #if defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT > 0
+    short lastAISuggestedMoveDirs[AI_SUGGEST_LM_COUNT]; 
+    int lastAISuggestedMoveCount;
+  #endif  
 short suggestMoveDirWithAI() {
   for (int rowTileIdx = 0; rowTileIdx < TILE_COUNT; rowTileIdx++) {
     for (int colTileIdx = 0; colTileIdx < TILE_COUNT; colTileIdx++) {
@@ -427,6 +448,18 @@ short suggestMoveDirWithAI() {
       input->data.f[idx] = f;
     }
   }
+  #if defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT > 0
+    for (int i = 0; i < AI_SUGGEST_LM_COUNT; i++) {
+      short prevMoveDir = -1;
+      if (i < lastAISuggestedMoveCount) {
+        prevMoveDir = lastAISuggestedMoveDirs[i];
+      }
+      if (prevMoveDir == -1) {
+        prevMoveDir = -1; // -1 means don't care
+      }
+      input->data.f[TILE_COUNT * TILE_COUNT + i] = ((float) (1 + prevMoveDir)) / (float) (4 + 1); 
+    }
+  #endif
   // run the model on this input and make sure it succeeds
   long detectStartMillis = millis();
   TfLiteStatus invokeStatus = interpreter->Invoke();
@@ -518,6 +551,17 @@ short suggestMoveDirWithAI() {
     }
     suggestedMoveDir = suggestMoveDir();
   }
+  #if defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT > 0
+    if (lastAISuggestedMoveCount < AI_SUGGEST_LM_COUNT) {
+      lastAISuggestedMoveDirs[lastAISuggestedMoveCount++] = suggestedMoveDir;
+    } else {
+      for (int i = 0; i < AI_SUGGEST_LM_COUNT - 1; i++) {
+        lastAISuggestedMoveDirs[i] = lastAISuggestedMoveDirs[i + 1];
+      }
+      lastAISuggestedMoveDirs[AI_SUGGEST_LM_COUNT - 1] = suggestedMoveDir;
+    }
+    //lastAISuggestedMoveDir = suggestedMoveDir;
+  #endif  
   return suggestedMoveDir;
 }
 bool suggestMoveWithAI() {
@@ -531,6 +575,9 @@ void ensureBoardInitialized() {
   if (holeTileColIdx == -1) {
     initializeBoard();
   }
+#if defined(SUPPORT_AI) && defined(AI_SUGGEST_LM_COUNT) && AI_SUGGEST_LM_COUNT > 0
+  lastAISuggestedMoveCount = 0;
+#endif
 }
 
 void startRandomizeBoard(int stepCount) {
@@ -742,6 +789,8 @@ void initializeDD() {
   resetButton->backgroundColor("orange");
   #ifdef AI_STAGED_STAGE_COUNT
     resetButton->writeCenteredLine("🔄 Reset (" + String(AI_STAGED_STAGE_COUNT) + ") 🔄");
+  #elif defined(AI_SUGGEST_LM_COUNT)
+    resetButton->writeCenteredLine("🔄 Reset (" + String(AI_SUGGEST_LM_COUNT) + ") 🔄");
   #else
     resetButton->writeCenteredLine("🔄 Reset 🔄");
   #endif
