@@ -249,10 +249,10 @@ and move direction of the missing cell is represented with a number:
 . 3: bottom to top
 
 1:
-when move the missing cell of the reference board with move 0, what is the board layout after the move?
+when move the missing cell of the reference board layout with move 0, what is the board layout after the move?
 
 2:
-from tne reference board, what is the board layout after the moves: 0, 0, 3, 3
+from the reference board layout, what is the board layout after the moves: 0, 0, 3, 3
 
 3:
 if given the board layout
@@ -262,7 +262,7 @@ if given the board layout
 |    |  9 | 11 | 12 |
 | 13 | 14 | 15 | 16 |
 ---------------------
-what are the moves in order to bring the board back to the reference layout?
+what are the moves in order to bring the board back to the reference board layout?
 ```
 
 From my experience, not all LLM models can provide satisfactory response for the above prompt. GPT4o appears to provide reasonable response; but others like
