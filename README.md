@@ -20,7 +20,7 @@ Specifically, ESP32 / ESP32S3 is the targe microcontroller board for this experi
 
 ![](images/sliding.gif)
 
-The DL model of this experiment is implemented with TensorFlow that I worked out by referencing to two of my previous experiments:
+The DL model of this experiment is implemented with TensorFlow Lite that I worked out by referencing to two of my previous experiments:
 * [Trying Out TensorFlow Lite Hello World Model With ESP32 and DumbDisplay](https://www.instructables.com/Trying-Out-TensorFlow-Lite-Hello-World-Model-With-/)
 * [Mnist Dataset -- From Training to Running With ESP32 / ESP32S3](https://www.instructables.com/Mnist-Dataset-From-Training-to-Running-With-ESP32-/)
 
@@ -227,6 +227,47 @@ In order to change the board size to 5:
 
 
 *Interested friends are encouraged to try out and share how the 'next move' suggestion can be improved.*
+
+# A LLM Prompt for the Moves
+
+Here is a challenging LLM prompt for you to try out
+
+```
+if a 4x4 sliding board game reference board layout is represented with
+
+---------------------
+|    |  2 |  3 |  4 |
+|  5 |  6 |  7 |  8 |
+|  9 | 10 | 11 | 12 |
+| 13 | 14 | 15 | 16 |
+---------------------
+
+and move direction of the missing cell is represented with a number:
+. 0: left to right
+. 1: right to left
+. 2: top to bottom
+. 3: bottom to top
+
+1:
+when move the missing of the reference board layout with 0, what is the board layout?
+
+2:
+what is the board layout after the move 0, 0, 3, 3
+
+3:
+if given the board layout
+---------------------
+|  2 |  6 |  3 |  4 |
+|  5 | 10 |  7 |  8 |
+|    |  9 | 11 | 12 |
+| 13 | 14 | 15 | 16 |
+---------------------
+what are the moves in order to bring the board to reference layout?
+```
+
+From my experience, not all LLM models can provide satisfactory response for the above prompt. GPT4o appears to provide reasonable response; but others like
+***GPT4 and even DeepSeek can produce endless response; 
+hence, be prepared to stop the response generation.***
 
 
 # Enjoy!
