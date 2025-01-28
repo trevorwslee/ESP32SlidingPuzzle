@@ -230,10 +230,10 @@ In order to change the board size to 5:
 
 # A LLM Prompt for the Moves
 
-Here is a challenging LLM prompt for you to try out
+BTW, here is a challenging LLM prompt for you to try out (just for fun)
 
 ```
-if a 4x4 sliding board game reference board layout is represented with
+if a 4x4 sliding puzzle board game "reference" board layout is represented with
 
 ---------------------
 |    |  2 |  3 |  4 |
@@ -242,17 +242,17 @@ if a 4x4 sliding board game reference board layout is represented with
 | 13 | 14 | 15 | 16 |
 ---------------------
 
-and move direction of the missing cell is represented with a number:
+and move of the "missing" cell is represented with a number:
 . 0: left to right
 . 1: right to left
 . 2: top to bottom
 . 3: bottom to top
 
 1:
-when move the missing cell of the reference board layout with move 0, what is the board layout after the move?
+when move the "missing" cell of the "reference" board layout with move 0, what is the board layout after the move?
 
 2:
-from the reference board layout, what is the board layout after the moves: 0, 0, 3, 3
+from the "reference" board layout, what is the board layout after the moves: 0, 0, 2, 2
 
 3:
 if given the board layout
@@ -262,11 +262,13 @@ if given the board layout
 |    |  9 | 11 | 12 |
 | 13 | 14 | 15 | 16 |
 ---------------------
-what are the moves in order to bring the board back to the reference board layout?
+what are the moves in order to bring the board back to the "reference" board layout?
 ```
 
-From my experience, not all LLM models can provide satisfactory response for the above prompt. GPT4o appears to provide reasonable response; but others like
-***GPT4 and even DeepSeek can produce endless response; 
+From my experience, not all LLM models I tried can provide satisfactory response for the above prompt.
+One reason might be that the prompt is not well written; another might be that the answer to question 3 above can be "endless".
+GPT4o seems to provide reasonable response; but others like
+***GPT4 or even DeepSeek might produce long response that appears never ending; 
 hence, be prepared to stop the response generation.***
 
 
