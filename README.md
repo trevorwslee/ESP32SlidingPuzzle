@@ -243,16 +243,16 @@ if a 4x4 sliding puzzle board game "reference" board layout is represented with
 ---------------------
 
 and move of the "missing" cell is represented with a number:
-. 0: left to right
-. 1: right to left
-. 2: top to bottom
-. 3: bottom to top
+. 0: move to left
+. 1: move to right
+. 2: move to top
+. 3: bottom to bottom
 
 1:
-when move the "missing" cell of the "reference" board layout with move 0, what is the board layout after the move?
+when move the "missing" cell of the "reference" board layout with move 1, what is the board layout after the move?
 
 2:
-from the "reference" board layout, what is the board layout after the moves: 0, 0, 2, 2
+from the "reference" board layout, what is the board layout after the moves: 1, 1, 3, 3
 
 3:
 if given the board layout
