@@ -246,7 +246,7 @@ and move of the "missing" cell is represented with a number:
 . 0: move to left
 . 1: move to right
 . 2: move to top
-. 3: bottom to bottom
+. 3: move to bottom
 
 1:
 when move the "missing" cell of the "reference" board layout with move 1, what is the board layout after the move?
